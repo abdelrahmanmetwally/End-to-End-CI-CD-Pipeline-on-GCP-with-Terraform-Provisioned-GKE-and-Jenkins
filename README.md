@@ -1,6 +1,6 @@
 # CI/CD-project-ITI
 
-### This repository contains Terraform configuration for setting up infrastructure on Google Cloud Platform (GCP) using terraform as (IAC), Installing Jenkins and build Single/Multi-branch pipeline to build and deploy an application on GKE
+This repository contains Terraform configuration for setting up infrastructure on Google Cloud Platform (GCP) using terraform as (IAC), Installing Jenkins and build Single/Multi-branch pipeline to build and deploy an application on GKE
 
 ## Requirements
 
