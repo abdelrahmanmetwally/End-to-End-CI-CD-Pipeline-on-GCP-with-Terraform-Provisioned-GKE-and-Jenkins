@@ -26,3 +26,18 @@ terraform init
 ```
 terraform apply
 ```
+
+## slave configurations
+
+
+## jenkins configurations
+
+1.open Jenkins & create users and passwords.
+```
+   kubectl get service -n jenkins | grep jenkins-service
+```
+2.Exec your running container and get first password
+
+```
+
+
