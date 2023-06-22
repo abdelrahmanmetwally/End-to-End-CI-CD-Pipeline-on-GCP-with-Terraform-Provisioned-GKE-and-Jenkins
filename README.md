@@ -1,8 +1,28 @@
-# final-project-infrastructure
+# CI/CD-project-ITI
 
-Here i have create a secure GKE cluster has been infrastructured using terraform 
+### This repository contains Terraform configuration for setting up infrastructure on Google Cloud Platform (GCP) using terraform as (IAC), Installing Jenkins and build Single/Multi-branch pipeline to build and deploy an application on GKE
 
-you can fine here the required files of resources and other required features which are necessary to establish this (Iac)
+## Requirements
 
-also you find here the required yaml file to create the services and resources which help us to complete our project 
+git
+Terraform
+Docker
+Google Cloud SDK
+A bucket as a backend to  terraform.
 
+## how to use
+
+1.clone this repo 
+```
+https://github.com/abdelrahmanmetwally/final-project-infrastructure.git
+```
+2.Change Directory to terraform-files
+3.Customize Values in "values.auto.tvars" as you want.
+4. create the backend bucket 
+5.Run terraform commands:
+```
+terraform init
+```
+```
+terraform apply
+```
