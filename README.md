@@ -64,8 +64,13 @@ build: select Build With Parameters
 kubectl get service -n app
 ```
 "Copy External-ip with specific port and access it from browser"
+
+
 ### finally 
 To Destroy All Resources Run [Type 'yes' to confirm]
 ```
 terraform destroy
 ```
+## Contributions
+Contributions to enhance or expand this project are welcome! If you found any issue or have suggestions, please open an issue or submit a pull request.
+
