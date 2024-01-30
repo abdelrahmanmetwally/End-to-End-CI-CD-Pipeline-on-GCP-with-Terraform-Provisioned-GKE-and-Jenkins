@@ -10,7 +10,8 @@ pipeline {
                                 withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                                     sh '''
                                         docker login -u ${USERNAME} -p ${PASSWORD}
-                                        docker build -t abdo23/final-project-iti:v${BUILD_NUMBER} .
+                                        docker build -t abdo23/final-project-iti:v${BUILD_NUMBER} ./deploy-with-jenkins-slave
+
                                         docker push abdo23/final-project-iti:v${BUILD_NUMBER}
                                         echo ${BUILD_NUMBER} > ../build.txt
                                     '''
