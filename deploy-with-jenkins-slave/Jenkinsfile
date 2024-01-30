@@ -1,5 +1,6 @@
 pipeline {
-    agent { label 'final-iti-project' }
+     agent any
+    // { label 'final-iti-project' }
     stages {
         stage('build') {
             steps {
