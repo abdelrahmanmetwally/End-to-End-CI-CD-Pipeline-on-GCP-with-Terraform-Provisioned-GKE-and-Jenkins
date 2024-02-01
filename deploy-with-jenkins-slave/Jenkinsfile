@@ -16,7 +16,7 @@ pipeline {
                 echo 'build'
                 script{
                       withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-
+                              sh " docker login -u ${USERNAME} -p ${PASSWORD}"
                      buildAndPush(
                   
                          DOCKER_REGISTRY: env.DOCKER_REGISTRY,
@@ -26,7 +26,7 @@ pipeline {
                      ) 
                                 //     sh '''
                                         
-                                //         docker login -u ${USERNAME} -p ${PASSWORD}
+                                       
                                 //         // docker build -t abdo23/final-project-iti:v${BUILD_NUMBER} ./deploy-with-jenkins-slave
                                 //         buildAndPush(DOCKER_REGISTRY: env.DOCKER_REGISTRY, DOCKER_IMAGE: env.DOCKER_IMAGE, BUILD_NUMBER: env.BUILD_NUMBER)
 
