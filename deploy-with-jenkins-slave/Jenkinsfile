@@ -9,7 +9,7 @@ pipeline {
         PASSWORD = '$PASSWORD'
         DOCKER_REGISTRY = 'abdo23'
         DOCKER_IMAGE    = 'final-project-iti'
-         BUILD_NUMBER    = '1'
+         // BUILD_NUMBER    = '1'
         BUILD_PATH      = './deploy-with-jenkins-slave'
      }
     stages {
@@ -24,7 +24,7 @@ pipeline {
                          PASSWORD: env.PASSWORD,
                          DOCKER_REGISTRY: env.DOCKER_REGISTRY,
                          DOCKER_IMAGE: env.DOCKER_IMAGE,
-                         // BUILD_NUMBER: env.BUILD_NUMBER,
+                         BUILD_NUMBER: env.BUILD_NUMBER,
                          BUILD_PATH: env.BUILD_PATH
                      ) 
                                 //     sh '''
