@@ -1,6 +1,15 @@
 pipeline {
      agent any
     // { label 'final-iti-project' }
+     environment {
+        DOCKER_REGISTRY = 'docker.io/abdo23'
+        DOCKER_IMAGE = 'new-app-project'
+        SERVER_NAME = 'https://api.ocpuat.devopsconsulting.org:6443'
+        OPENSHIFT_TOKEN = 'sha256~2WTzYAScmhdm7sYQtPRuHx-4ZsuliaN2FGr4FDaNxq0'
+        OPENSHIFT_PROJECT = 'abdelrahman'
+        SONARQUBE_TOKEN = '11986ba88cfe1b603256e331f33d03679486adc0'
+        SONARQUBE_PROJECTKEY = 'ivlove-project'
+    }
     stages {
         stage('build') {
             steps {
@@ -10,10 +19,12 @@ pipeline {
                                 withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                                     sh '''
                                         docker login -u ${USERNAME} -p ${PASSWORD}
-                                        docker build -t abdo23/final-project-iti:v${BUILD_NUMBER} ./deploy-with-jenkins-slave
+                                        // docker build -t abdo23/final-project-iti:v${BUILD_NUMBER} ./deploy-with-jenkins-slave
+                                        buildAndPush(DOCKER_REGISTRY: env.DOCKER_REGISTRY, DOCKER_IMAGE: env.DOCKER_IMAGE, BUILD_NUMBER: env.BUILD_NUMBER)
 
-                                        docker push abdo23/final-project-iti:v${BUILD_NUMBER}
+                                        // docker push abdo23/final-project-iti:v${BUILD_NUMBER}
                                         echo ${BUILD_NUMBER} > ../build.txt
+                                        
                                     '''
                               
                     }
@@ -24,7 +35,7 @@ pipeline {
             steps {
                 echo 'deploy'
                 script {
-                         sh " echo hello " 
+                         sh " echo succeeded " 
                                 // withCredentials([file(credentialsId: 'kubeconfig-credentials', variable: 'KUBECONFIG1'),
                                 //                  file(credentialsId: 'key-gke-file', variable: 'KUBECONFIG')]) {
                                 //     sh '''
