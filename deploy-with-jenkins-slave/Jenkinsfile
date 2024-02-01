@@ -5,9 +5,7 @@ pipeline {
      agent any
     // { label 'final-iti-project' }
      environment {
-        USERNAME        = 'abdo23'
-        PASSWORD        = 'Abdo@01287306586'
-        DOCKER_REGISTRY = 'abdo23'
+
         DOCKER_IMAGE    = 'final-project-iti'
         BUILD_NUMBER    = '1'
         BUILD_PATH      = './deploy-with-jenkins-slave'
@@ -17,15 +15,15 @@ pipeline {
             steps {
                 echo 'build'
                 script{
+                      withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+
                      buildAndPush(
-                         USERNAME: env.USERNAME,
-                         PASSWORD: env.PASSWORD,
+                  
                          DOCKER_REGISTRY: env.DOCKER_REGISTRY,
                          DOCKER_IMAGE: env.DOCKER_IMAGE,
                          BUILD_NUMBER: env.BUILD_NUMBER,
                          BUILD_PATH: env.BUILD_PATH
                      ) 
-                                // withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                                 //     sh '''
                                         
                                 //         docker login -u ${USERNAME} -p ${PASSWORD}
@@ -37,7 +35,7 @@ pipeline {
                                         
                                 //     '''
                               
-                    // }
+                     }
                 }
             }
         }
