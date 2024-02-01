@@ -5,8 +5,8 @@ pipeline {
      agent any
     // { label 'final-iti-project' }
      environment {
-        USERNAME        = 'your-docker-username'
-        PASSWORD        = 'your-docker-password'
+        USERNAME        = 'abdo23'
+        PASSWORD        = 'Abdo@01287306586'
         DOCKER_REGISTRY = 'abdo23'
         DOCKER_IMAGE    = 'final-project-iti'
         BUILD_NUMBER    = '1'
