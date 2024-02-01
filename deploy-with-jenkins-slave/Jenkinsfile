@@ -7,8 +7,9 @@ pipeline {
      environment {
         USERNAME = '$USERNAME'
         PASSWORD = '$PASSWORD'
+        DOCKER_REGISTRY = 'abdo23'
         DOCKER_IMAGE    = 'final-project-iti'
-        // BUILD_NUMBER    = '1'
+        BUILD_NUMBER    = '1'
         BUILD_PATH      = './deploy-with-jenkins-slave'
      }
     stages {
