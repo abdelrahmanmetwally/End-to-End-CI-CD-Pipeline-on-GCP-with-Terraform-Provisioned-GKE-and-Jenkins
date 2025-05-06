@@ -1,14 +1,13 @@
-# CI/CD-project-ITI
+# End-to-End automated APP deployment on GKE
 
-This repository contains Terraform configuration for setting up infrastructure on Google Cloud Platform (GCP) using terraform as (IAC), Installing Jenkins and build Single/Multi-branch pipeline to build and deploy an application on GKE
+This project provisions infrastructure on Google Cloud Platform (GCP) using Terraform, installs Jenkins on Google Kubernetes Engine (GKE), and sets up Single/Multi-branch Pipelines to build and deploy applications with DockerHub integration.
 
 ## Requirements
-
-git
-Terraform
-Docker
-Google Cloud SDK
-A bucket as a backend to  terraform.
+ **Ensure the following tools are installed**:
+- Git
+- Terraform
+- Docker
+- Google Cloud SDK
 
 ## how to use
 
@@ -16,10 +15,10 @@ A bucket as a backend to  terraform.
 ```
 https://github.com/abdelrahmanmetwally/final-project-infrastructure.git
 ```
-2.Change Directory to terraform-files
-3.Customize Values in "values.auto.tvars" as you want.
-4. create the backend bucket 
-5.Run terraform commands:
+2. Navigate to Terraform directory.
+3. Customize Values in "values.auto.tvars" as you want.
+4. Create the backend bucket.
+5. Initialize and apply the Terraform configuration:
 ```
 terraform init
 ```
@@ -27,47 +26,48 @@ terraform init
 terraform apply
 ```
 
-## for jenkins slave configurations
+## Jenkins  configurations
+
+Step 1: Access Jenkins service
+```
+kubectl get service -n jenkins
+```
 
 
-1.open Jenkins & create users and passwords.
-```
-   kubectl get service -n jenkins 
-```
-2.Exec your running container and get first password
+ Step 2: Get Jenkins admin password
 
 ```
 kubectl exec -it <running-container-name> -n jenkins -- bash
    cat /var/jenkins_home/secrets/initialAdminPassword
 ```
-3.Configure github,dockerHub,kubeconfig and slave (node: "jenkins,123456") credentials.
+Step 3: Configure the following inside Jenkins:
+- GitHub Credentials
+- DockerHub Credentials
+- Kubeconfig Integration
+- Jenkins Slave Node (using username/password auth)
 
-4.Create Single/Multibransh Pipline from Git repo
+Step 4: Create Jenkins pipelines
+- Choose Single or Multibranch Pipeline
+- Use branch: main
+- Select “Build With Parameters”
 
-5.Create new node with credentials usernameandpassword.
+Step 5: Create new node with credentials usernameandpassword.
 
-note: If node is offline make sure you selected [Non Verifiying Verification Stratgey - Launch agents via SSH ] while creating & connect slave and Run.
+- Note: If the node is offline, make sure you selected [Non-Verifying Verification Strategy - Launch agents via SSH ] while creating & connect the slave and Run.
 ```
 service ssh start
 chmod 777 /var/run/docker.sock
 ```
-6.Choose a branch and click build now.
 
-7.In case you run single pipline: after choosing Git credentails type
-branch: main
-JenkinsFile
-build: select Build With Parameters
-
-8.To get app url Run:
-
+##  Access Your App
+Get your app’s public IP
 ```
 kubectl get service -n app
 ```
-"Copy External-ip with specific port and access it from browser"
+Open the EXTERNAL-IP with the correct port in your browser.
 
+## Tear Down Infrastructure
 
-### finally 
-To Destroy All Resources Run [Type 'yes' to confirm]
 ```
 terraform destroy
 ```
