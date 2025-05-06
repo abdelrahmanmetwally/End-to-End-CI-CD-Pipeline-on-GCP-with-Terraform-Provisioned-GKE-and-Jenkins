@@ -2,6 +2,7 @@
 
 This project provisions infrastructure on Google Cloud Platform (GCP) using Terraform, installs Jenkins on Google Kubernetes Engine (GKE), and sets up Single/Multi-branch Pipelines to build and deploy applications with DockerHub integration.
 
+![project-image](https://github.com/abdelrahmanmetwally/End-to-End-CI-CD-Pipeline-on-GCP-with-Terraform-Provisioned-GKE-and-Jenkins/blob/main/project-image.png)
 ## Requirements
  **Ensure the following tools are installed**:
 - Git
